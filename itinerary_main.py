@@ -49,39 +49,6 @@ def getPlacesInArea(address, start_time, end_time, price_range, distance=transpo
     
     print(json.dumps(r.json(), indent=4, sort_keys=True))
 
-    '''
-    #print json.dumps(r.json(), indent=4, sort_keys=True)
-    js = r.json()
-    
-    print js
-
-    prices = []
-    ratings = []    
-    for item in js['data']:
-    	if(item['price_level'] == None):
-    		continue    
-    	prices.append(float(len(item['price_level'])))
-    	ratings.append(float(item['rating']))   
-    prices = np.array(prices)
-    ratings = np.array(ratings) 
-    try:
-    	slope, intercept, r_value, p_value, std_err = stats.linregress(prices, ratings)
-    except:
-    	print "No restaurants found nearby. Please try again."
-    	return getRestaurantsInArea(raw_input("Enter address: "))
-    
-    #print slope, intercept, r_value, p_value, std_err  
-    values = {} 
-    for item in js['data']:
-    	if(item['price_level'] == None):
-    		continue    
-    	#print item['name'], value(item, slope, intercept)
-    	v = value(item, slope, intercept)   
-    	values[item['name']] = (round(v, 3), grade(v))  
-    values = sorted(values.items(), key=operator.itemgetter(1), reverse=True)   
-    return values
-    '''
-
 def geolocator(address):
     geolocator = Nominatim()
     location = geolocator.geocode(address)
@@ -90,7 +57,6 @@ def geolocator(address):
     #print location.latitude, location.longitude
 
     return {'lat':location.latitude, 'lng':location.longitude}
-
 
 if __name__ == '__main__':
 	main()
