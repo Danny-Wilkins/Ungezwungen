@@ -56,14 +56,14 @@ def getPlacesInArea(address, start_time, end_time, price_range, location=Locatio
     request_url = ('https://api.tripadvisor.com/api/partner/2.0/map/{},{}/{}' \
             + '?key={}&distance={}').format(loc['lat'], loc['lng'], location, API_KEY, distance)
     
-    return requests.get(request_url).json()
+    return requests.get(request_url).json()['data']
 
 def isRestaurant(attraction):
     return attraction['category'] == LocationType.RESTAURANTS
 
 def filterRestaurants(dump, restaurants=True):
-    return {'data': [attraction for attraction in dump['data'] \
-            if isRestaurant(attraction) == restaurants]}
+    return [attraction for attraction in dump \
+            if isRestaurant(attraction) == restaurants]
 
 def getReviews(attraction):
     locationId = attraction["location_id"]
