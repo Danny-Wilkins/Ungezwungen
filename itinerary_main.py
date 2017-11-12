@@ -69,7 +69,7 @@ def getReviews(attraction):
     locationId = attraction["location_id"]
     request_url = 'https://api.tripadvisor.com/api/partner/2.0/location/{0}/reviews?key={1}'\
         .format(locationId, API_KEY)
-    return requests.get(request_url).json()
+    return requests.get(request_url).json()['data']
 
 def geolocator(address):
     geolocator = Nominatim()
