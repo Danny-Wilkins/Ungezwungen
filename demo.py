@@ -2,7 +2,9 @@ from itinerary_main import *
 from sklearn.linear_model import LogisticRegression
 from ml_lib import getInputVectors
 import numpy as np
+import webbrowser
 import warnings
+
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
 np.random.seed(0)
@@ -18,6 +20,11 @@ def getAttractions():
 			print("Invalid address. Try again.")
 	return attractions
 
+def parsePath(soup, classes):
+	for class_ in classes:
+		soup = soup.find('div', class_=class_)
+	return soup
+
 def demo():
 	attractions = getAttractions()
 	numAttractions = len(attractions)
@@ -30,20 +37,33 @@ def demo():
 	labels = []
 	for i in training_indices:
 		name = attractions[i]['name'] 
-		#print(name, attributes[i], sep='\n', end = '\n\n')
-		userRating = input("Does {} interest you? (y/n)".format(name)).lower()
-		#userRating = 'y' if np.random.random() > 0.5 else 'n'
-		#print(name, userRating)
-		if userRating.lower()[0] == 'y':
-			labels.append(1)
-		else:
-			labels.append(0)
+		# wantPage = input("Open TripAdvisor page for more info? (y/n) ").lower()
+		# if 'y' in wantPage:
+		# 	webbrowser.open(attractions[i]['web_url'])
+		
+		while True:
+			userRating = input("Does {} interest you? ([y]es/[n]o/more [i]nfo) ".format(name))
+			lowerRating = userRating.lower()
+			#userRating = 'y' if np.random.random() > 0.5 else 'n'
+			#print("Does {} interest you? (y/n) {}".format(name, userRating))
+			if 'i' in lowerRating:
+				url = attractions[i]['web_url']
+				webbrowser.open(url)
+			else:
+				if 'y' in lowerRating:
+					labels.append(1)
+				elif 'n' in lowerRating:
+					labels.append(0)
+				else:
+					print('Invalid input "{}"'.format(userRating))
+					continue
+				break
+
 	labels = np.array(labels).reshape(numSamples)
-	#print(training_indices)
-	#print(labels)
 	logistic = LogisticRegression()
 	logistic.fit(training_samples, labels)
 	would_like = []
+	might_like = []
 	wouldnt_like = []
 	for i in range(numAttractions):
 		label = '?'
@@ -51,24 +71,28 @@ def demo():
 		name = attractions[i]['name']
 		prob = logistic.predict_proba(attributes[i])[0][1]
 		if i in training_indices:
-			#print(np.where(training_indices==i))
 			label = labels[np.where(training_indices==i)][0]
-		print('{} {} \n\tPredicted class {}, real class {}, prob {}'.format(i, 
-			name, \
-			predictedLabel, \
-			label,
-			prob))
-		if label == 1 or (predictedLabel == 1 and label != 0):
+		# print('{} {} \n\tPredicted class {}, real class {}, prob {}'.format(i, 
+		# 	name, \
+		# 	predictedLabel, \
+		# 	label,
+		# 	prob))
+		if label == 1 or (prob >= 0.6 and label != 0):
 			would_like.append((prob, name))
+		elif label != 0 and prob >= 0.4:
+			might_like.append((prob, name))
 		else:
 			wouldnt_like.append(name)
 
 	would_like.sort(reverse=True)
-	print("You would like:")
+	might_like.sort(reverse=True)
+	print("\nYou would like:")
 	for prob, name in would_like:
 		print('\t-{}'.format(name))
-	print("")
-	print("You wouldn't like:")
+	print("\nYou might like:")
+	for prob, name in might_like:
+		print('\t-{}'.format(name))
+	print("\nYou wouldn't like:")
 	for name in wouldnt_like:
 		print('\t-{}'.format(name))
 
