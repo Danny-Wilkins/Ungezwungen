@@ -24,46 +24,66 @@ class LocationType:
     RESTAURANTS = 'restaurants'
 
 def main():
-    values = driver()
+    #values = driver()
     
-    print(values)
-
+    #print(values)
+    pass
+    
 @app.route('/')
 def home():
     return render_template('index.html')
 
-@app.route('/search/<location>')
-def driver(location=LocationType.RESTAURANTS):
+@app.route('/search/<address>')
+def driver(address, location=LocationType.ATTRACTIONS):
     #location = input("Please enter an address: ")
 
     #In the end, if this fails, it would be best to direct to a "failed to find address" page. From there, this can all be called again from the top. No loops or anything.
     while True:
         try:
-            return getPlacesInArea(address, 9, 18, 100, distance=TransportType.WALKING, location=location)
+            #return str(getPlacesInArea(address, 9, 18, 100, location, TransportType.WALKING))
+            attractions = getPlacesInArea(address, 9, 18, 100, location, TransportType.WALKING)
+            dump = getAttractionsReviews(attractions)
+            indexById = {attraction['location_id']: attraction for attraction in attractions}
+            #prettyPrint([[item[thing] for thing in item] for item in attractions])
+            innerDump = [place[0] if len(place) > 0 else "" for place in dump]
+            #prettyPrint(dump)
+            prettyPrint(indexById)
+            #print(indexById['4303229']['name'])
+            #[[review['text'] for review in place] for place in dump]
+            #print(j[0]['data'][0]['text'])
+            return render_template('results.html', address=address, attractions=indexById, reviews=innerDump)
         except Exception as e:
             print("Address not found. Please enter a different location.")
             print(e)
-            address = input("Please enter an address: ")
+            #address = input("Please enter an address: ")
 #End goal is to fill parameters in using forms on the front end
 
+def prettyPrint(js):
+    print(json.dumps(js, indent=4, sort_keys=True))
+
 def getPlacesInArea(address, start_time, end_time, price_range, location=LocationType.RESTAURANTS, distance=TransportType.WALKING):
-	
     try:
         loc = geolocator(address)
     except Exception as e:
         raise e
+
+    print(location)
     
-    request_url = ('https://api.tripadvisor.com/api/partner/2.0/map/{},{}/{}' \
-            + '?key={}&distance={}').format(loc['lat'], loc['lng'], location, API_KEY, distance)
+    request_url = ('https://api.tripadvisor.com/api/partner/2.0/map/{0},{1}/{2}' \
+            + '?key={3}&distance={4}').format(loc['lat'], loc['lng'], location, API_KEY, distance)
     
     return requests.get(request_url).json()['data']
 
 def isRestaurant(attraction):
     return attraction['category'] == LocationType.RESTAURANTS
 
+
 def filterRestaurants(dump, restaurants=True):
     return [attraction for attraction in dump \
             if isRestaurant(attraction) == restaurants]
+
+def getAttractionsReviews(attractions):
+    return [getReviews(attraction) for attraction in attractions]
 
 def getReviews(attraction):
     locationId = attraction["location_id"]
