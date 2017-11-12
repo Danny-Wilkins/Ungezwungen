@@ -12,9 +12,26 @@ for place in reviews:
         text = review['text']
         lang = review['lang']
 
-        print(text)
-
         if (lang == 'en'):
-            reviews_info.append((location_id, helpful_votes, rating, text))
+            text = text.encode("ascii", errors="ignore").decode()
+            text = nltk.word_tokenize(text)
+            tokenized = nltk.pos_tag(text)
+            
+            essence = {}
+            for tup in tokenized:
+                word, pos = tup
+                if (pos in ('NNP', 'NN', 'NNPS', 'NNS', 'JJ', 'JJR', 'JJS')):
+                    if (pos != 'NNP' or tup[1] != 'NNPS'):
+                        word.lower()
+
+                    if (essence.get(word) == None):
+                        essence[word] = 1
+                    else:
+                        essence[word] += 1
+
+            reviews_info.append((location_id, helpful_votes, rating, essence))
 
     useful_info.append(reviews_info)
+
+for thing in useful_info:
+    print(*thing)
