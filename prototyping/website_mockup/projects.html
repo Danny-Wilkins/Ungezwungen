@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Ungezwungen</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    </head>
+    
+    <body>
+        <a href="top">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><img class="icon" src="img/icon.png'"></img>
+                        </a>
+                        <p class="navbar-text">Ungezwungen</p>
+                    </div>
+                </div>
+            </nav>
+        </a>
+        <!-- <div class="container" style="padding-top:60px"> -->
+        <div class="jumbotron text-center" id="top" style="background-image: url(http://travelcure.net/wp-content/uploads/2017/06/travel-plan.jpg); background-size:cover;">
+            <div class="container">
+                <h1>It's simple.</h1>
+                <p>Just enter your location and we'll make you an itinerary for the day based on your interests.</p>
+                <form action="search.html" method="GET">
+                    <input type="text" name="address" placeholder="Let's go!" id="add">
+                    <input type="button" value="Go!" class="btn btn-default btn-lg" id="add_but" onclick="search()" />
+                </form>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <!-- <script type="text/javascript" src=""></script> -->
+        <div class="container col-sm-12">
+			<!-- <a href="https://www.tripadvisor.com/Attraction_Review-g60763-d7008030-Reviews-Must_See_Central_Park_Day_Tours-New_York_City_New_York.html" target="_blank"> -->
+			<div class="jumbotron col-sm-4" id="result">
+			<div class="block" style="background-image: url(https://media-cdn.tripadvisor.com/media/photo-w/06/a0/f8/0d/central-park-lake.jpg); background-size:cover;"></div>
+	        <div class="row">
+	            <div class="col-sm-8">
+	                <h2>Must See Central Park - Day Tours</h2>
+	                <h4>0.50 miles</h4>
+	                <h4>56 W 56th St, New York City, NY 10019-3819</h4>
+	                <h4>+1212-247-4859</h4>
+	            </div>
+	            <div class="col-sm-2">
+	                <h2>3.5/5</h2>
+	                <h4>8 reviews</h4>
+	                <h2>$$</h2>
+	            </div>
+	        </div>
+            </div>
+        </a>
+
+			<!-- <a href="https://www.tripadvisor.com/Attraction_Review-g60763-d105126-Reviews-The_Museum_of_Modern_Art_MoMA-New_York_City_New_York.html" target="_blank"> -->
+			<div class="jumbotron col-sm-4" id="result">
+			<div class="block" style="background-image: url(https://media-cdn.tripadvisor.com/media/photo-w/07/fb/f3/4d/the-museum-of-modern.jpg); background-size:cover;"></div>
+	        <div class="row">
+	            <div class="col-sm-8">
+	                <h2>Museum of Metropolitan Art</h2>
+	                <h4>0.00 miles</h4>
+	                <h4>11 West 53rd Street, New York City, NY 10019-5401</h4>
+	                <h4>+1 212-708-9400</h4>
+	            </div>
+	            <div class="col-sm-2">
+	                <h2>4.5/5</h2>
+	                <h4>14,310 reviews</h4>
+	                <h2>$$</h2>
+	            </div>
+	        </div>
+            </div>
+        </a>
+			<!-- <a href="https://www.tripadvisor.com/Attraction_Review-g60763-d4303229-Reviews-Love_Sculpture-New_York_City_New_York.html" target="_blank"> -->
+			<div class="jumbotron col-sm-4" id="result">
+			<div class="block" style="background-image: url(https://media-cdn.tripadvisor.com/media/photo-w/10/ae/5a/bf/photo0jpg.jpg); background-size:cover;"></div>
+	        <div class="row">
+	            <div class="col-sm-8">
+	                <h2>Love Sculpture</h2>
+	                <h4>0.50 miles</h4>
+	                <h4>1359 Avenue of the Americas, 55th Street & 6th Ave, New York City, NY 10105</h4>
+	                <h4>+1 959-512-3121</h4>
+	            </div>
+	            <div class="col-sm-2">
+	                <h2>4/5</h2>
+	                <h4>550 reviews</h4>
+	                <h2>$</h2>
+	            </div>
+	        </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="container col-sm-12">
+        <!-- <a href="https://www.tripadvisor.com/Attraction_Review-g60763-d615586-Reviews-CBS_Building-New_York_City_New_York.html" target="_blank"> -->
+        <div class="jumbotron col-sm-4" id="result">
+        <div class="block" style="background-image: url(https://media-cdn.tripadvisor.com/media/photo-w/08/28/ef/65/cbs-building.jpg); background-size:cover;"></div>
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>CBS Building</h2>
+                <h4>0.50 miles</h4>
+                <h4>51 W 52nd St, New York City, NY 10019-6119</h4>
+                <h4></h4>
+            </div>
+            <div class="col-sm-2">
+                <h2>3.5/5</h2>
+                <h4>19 reviews</h4>
+                <h2>$</h2>
+            </div>
+        </div>
+        </div>
+    </a>
+
+        <!-- <a href="https://www.tripadvisor.com/Attraction_Review-g60763-d10422839-Reviews-Telltale_Tours-New_York_City_New_York.html" target="_blank"> -->
+        <div class="jumbotron col-sm-4" id="result">
+        <div class="block" style="background-image: url(https://media-cdn.tripadvisor.com/media/photo-o/0c/ef/e9/b2/telltale-tours.jpg); background-size:cover;"></div>
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Telltale Tours</h2>
+                <h4>0.40 miles</h4>
+                <h4>21 W 52nd St, New York City, NY 10019-6101</h4>
+                <h4>+1 347-670-4424</h4>
+            </div>
+            <div class="col-sm-2">
+                <h2>4.5/5</h2>
+                <h4>12 reviews</h4>
+                <h2>$$</h2>
+            </div>
+        </div>
+        </div>
+    </a>
+        <!-- <a href="https://www.tripadvisor.com/Attraction_Review-g60763-d2056247-Reviews-Cycle_Central_Park_Bike_Rentals_Tours_NYC-New_York_City_New_York.html" target="_blank"> -->
+        <div class="jumbotron col-sm-4" id="result">
+        <div class="block" style="background-image: url(https://media-cdn.tripadvisor.com/media/photo-o/0f/da/9f/c8/photo0jpg.jpg); background-size:cover;"></div>
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>Cycle Central Park Bike Rentals & Tours</h2>
+                <h4>0.40 miles</h4>
+                <h4>54 W 56th St, New York City, NY 10019-3828</h4>
+                <h4>+1 646-637-7154</h4>
+            </div>
+            <div class="col-sm-2">
+                <h2>4.0/5</h2>
+                <h4>60 reviews</h4>
+                <h2>$</h2>
+            </div>
+        </div>
+        </div>
+    </a>
+    <div>
+
+	    
+</body>
+<html>

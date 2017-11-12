@@ -53,21 +53,13 @@
     <!-- [[review['text'] for review in place] for place in dump] -->
     {% for review in reviews %}
         <div class="container">
-            <a href="https://www.yelp.com/biz/westville-dumbo-brooklyn?adjust_creative=XRYdDW2W0jN3S5ZDt6v1qA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=XRYdDW2W0jN3S5ZDt6v1qA" target="_blank">
+            <a href="#"></a>
                 <div class="jumbotron" id="result">
                     <div class="block" style="background-image: url(https://s3-media3.fl.yelpcdn.com/bphoto/o2VIHczhMb_J9R_llry_yg/o.jpg); background-size:cover;"></div>
                         <div class="row">
                             <div class="col-sm-8">
-                                <h2>{{attractions[review['location_id']]['name']}}</h2>
-                                <h4>{{attractions[review['location_id']]['distance']}}</h4>
-                                <h4>{{attractions[review['location_id']]['address_obj']['street1']}}</h4>
-                                <h4></h4>
-                            </div>
-                            <div class="col-sm-2">
-                                <h2>{{attractions[review['location_id']]['rating']}}</h2>
-                                <h4>{{attractions[review['location_id']]['num_reviews']}}</h4>
-                                <h2></h2>
-                            </div>
+                                <h1>{{review['location_id']}}</h1>
+                                <h2>{{attractions[review['location_id']]}}</h2>
                             <div class="col-sm-1 col-sm-offset-1">
                                 <h1>B</h1>
                                 <h3>Good!</h3>

@@ -2,6 +2,7 @@
 import requests
 import json
 import numpy as np
+import random
 from scipy import stats
 from geopy.geocoders import Nominatim
 from flask import Flask
@@ -36,27 +37,38 @@ def home():
 @app.route('/search/<address>')
 def driver(address, location=LocationType.ATTRACTIONS):
     #location = input("Please enter an address: ")
-
+    return render_template('suggestions.html')
     #In the end, if this fails, it would be best to direct to a "failed to find address" page. From there, this can all be called again from the top. No loops or anything.
-    while True:
+    '''while True:
         try:
+            pass
             #return str(getPlacesInArea(address, 9, 18, 100, location, TransportType.WALKING))
-            attractions = getPlacesInArea(address, 9, 18, 100, location, TransportType.WALKING)
-            dump = getAttractionsReviews(attractions)
-            indexById = {attraction['location_id']: attraction for attraction in attractions}
+            #attractions = getPlacesInArea(address, 9, 18, 100, location, TransportType.WALKING)
+            #dump = getAttractionsReviews(attractions)
+            #indexById = {attraction['location_id']: attraction for attraction in attractions}
             #prettyPrint([[item[thing] for thing in item] for item in attractions])
-            innerDump = [place[0] if len(place) > 0 else "" for place in dump]
+            #innerDump = [place[0] if len(place) > 0 else "" for place in dump]
             #prettyPrint(dump)
-            prettyPrint(indexById)
+            #prettyPrint(indexById["7008030"]['name'])
             #print(indexById['4303229']['name'])
             #[[review['text'] for review in place] for place in dump]
             #print(j[0]['data'][0]['text'])
-            return render_template('results.html', address=address, attractions=indexById, reviews=innerDump)
+            #return render_template('results.html', address=address, attractions=indexById, reviews=innerDump)
+            #showSuggestions(innerDump)
         except Exception as e:
             print("Address not found. Please enter a different location.")
             print(e)
-            #address = input("Please enter an address: ")
+            #address = input("Please enter an address: ")'''
 #End goal is to fill parameters in using forms on the front end
+
+def showSuggestions(dump):
+    #for i in dump:
+    #return render_template('suggestions.html', pic_url=i['rating_image_url'])
+    #finalItineraries()
+    pass
+
+def finalItineraries():
+    pass
 
 def prettyPrint(js):
     print(json.dumps(js, indent=4, sort_keys=True))

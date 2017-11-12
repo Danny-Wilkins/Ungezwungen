@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <script type="text/javascript" src="sound-mouseover.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav class="container clearfix">
+            <!-- Need help fixing height of buttons and centering the text in them -->
+            <ul>
+                <li class="grid_4 alpha home active">
+                    <a href="index.html"><img class="icon" src="img/icon.png"></img>
+                    </a><a class="icon-font-home" href="index.html">Probably Not a Carrot</a></li>
+                <li class="grid_2"><a href="about.html">About</a></li>
+                <li class="grid_2"><a href="projects.html">Projects</a></li>
+                <li class="grid_2"><a href="writeups.html">Writeups</a></li>
+                <li class="grid_2 omega"><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container clearfix">
+        <div class="grid_12">
+            <h1>Daniel Wilkins</h1>
+            <div class="grid_8 about alpha">
+                <a href="about.html">
+                    <h4>A CS student aspiring to be a software engineer or cybersecurity expert.<br> 
+                    <br>
+                    NYU Tandon School of Engineering, Class of 2019<br>
+                    Major: Computer Science<br>
+                    Minor: Cybersecurity<br>
+                    <br>
+                    Experienced in:<br>
+                    Software Development, Digital Forensics, Teaching (Computer Science)<br>
+                    <br>
+                    Major Achievements: 
+                    <br>Hack RPI 2016 - Best Food Related App/Best use of the TripAdvisor API
+                    <br>NYU Martin Luther King, Jr. Scholar
+                    <br>Eagle Scout
+            </h4>
+                </a>
+            </div>
+            <div class="grid_4 get_funky omega">
+                <audio id="break">
+                    <source src="audio/shall_we_break.wav">
+                </audio>
+                <a href="about.html">
+                    <br><img onmouseover="playclip('break');" src="img/yes.png">
+                    <img class="glasses" src="img/mlg.png">
+                </a>
+            </div>
+        </div>
+        <span class="grid_12">
+        <hr class="grid_12 alpha omega">
+        </span>
+        <ul>
+            <li>
+                <div class="grid_4 link">
+                    <a href="projects.html">
+                        <h2>Projects</h2>
+                        <audio id="stop">
+                            <source src="audio/cannot_stop.wav">
+                        </audio>
+                        <img class="link" onmouseover="playclip('stop');" src="img/code.jpeg">
+                        <h3>Projects written in<br>Python, C++, etc.</h3>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="grid_4 link">
+                    <a href="writeups.html">
+                        <h2>Writeups</h2>
+                        <audio id="words">
+                            <source src="audio/looking_for_words.wav">
+                        </audio><img class="link" onmouseover="playclip('words');" src="img/writing.jpeg">
+                        <h3>Reports written on<br>a variety of topics</h3>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="grid_4 link">
+                    <a href="contact.html">
+                        <h2>Contact Me</h2>
+                        <audio id="say">
+                            <source src="audio/say_something.wav">
+                        </audio>
+                        <img class="link" onmouseover="playclip('say');" src="img/phone.jpeg">
+                        <h3>Contact information:<br>email, phone number, etc.</h3>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <footer>
+        <div class="container clearfix">
+            <span class="grid_12">
+            <hr class="grid_12 alpha omega">
+            </span>
+            <ul>
+                <li class="grid_2"><a style="color: #777777;" href="index.html">Probably Not a Carrot</a></li>
+                <li class="grid_2"><a style="color: #777777;" href="about.html">About</a></li>
+                <li class="grid_2"><a style="color: #777777;" href="projects.html">Projects</a></li>
+                <li class="grid_2"><a style="color: #777777;" href="writeups.html">Writeups</a></li>
+                <li class="grid_2"><a style="color: #777777;" href="contact.html">Contact</a></li>
+                <li class="grid_2"><a style="color: #777777;" href="#">Top</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
