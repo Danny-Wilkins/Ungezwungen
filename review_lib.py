@@ -35,3 +35,19 @@ def extractReviewInfo(attractions):
                 reviews_info.append((location_id, helpful_votes, rating, essence))
         useful_info.append(reviews_info)
     return useful_info
+
+def getReviewWordVecs(attractions):
+    reviewInfo = extractReviewInfo(attractions)
+    vocabulary = set()
+    for place in reviewInfo:
+        for _, _, _, reviewWords in place:
+            vocabulary |= set(reviewWords.keys())
+    print(vocabulary)
+
+if __name__ == "__main__":
+    attractions = driver(location=LocationType.ATTRACTIONS)
+    getReviewWordVecs(attractions)
+    #print(json.dumps(not_rest, indent=4, sort_keys=True))
+    #pca_vecs = getPCACategoryVectors(not_rest)
+    #print(pca_vecs)
+    
