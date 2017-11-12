@@ -4,10 +4,9 @@ from ml_lib import getInputVectors
 import numpy as np
 import webbrowser
 import warnings
-
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
-np.random.seed(0)
+numSamples = 10
 
 def getAttractions():
 	attractions = None
@@ -15,15 +14,19 @@ def getAttractions():
 		address = input("Enter an address: ")
 		try:
 			attractions = getAttractionsInArea(address)
+			if len(attractions) <= numSamples:
+				attractions = getAttractionsInArea(address, distance=TransportType.CAR)
+			if len(attractions) <= numSamples:
+				print("Not enough attractions in area. You can visit all {} attractions!.".format(len(attractions)))
+				print("Please try another location.")
+				attractions = None
 		except Exception as ex:
-			#print(ex)
 			print("Invalid address. Try again.")
 	return attractions
 
 def demo():
 	attractions = getAttractions()
 	numAttractions = len(attractions)
-	numSamples = 10
 	attributes = getInputVectors(attractions) 
 	training_indices = np.random.choice(np.arange(numAttractions), size=numSamples, replace=False)
 	testing_indices = np.array([i for i in np.arange(numAttractions) if i not in training_indices])
@@ -32,10 +35,6 @@ def demo():
 	labels = []
 	for i in training_indices:
 		name = attractions[i]['name'] 
-		# wantPage = input("Open TripAdvisor page for more info? (y/n) ").lower()
-		# if 'y' in wantPage:
-		# 	webbrowser.open(attractions[i]['web_url'])
-		
 		while True:
 			userRating = input("Does {} interest you? ([y]es/[n]o/more [i]nfo) ".format(name))
 			lowerRating = userRating.lower()

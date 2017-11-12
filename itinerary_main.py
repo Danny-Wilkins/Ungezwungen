@@ -14,7 +14,7 @@ API_KEY =  "521d44db-20a6-45f9-9f25-836918a17934"
 class TransportType:
     WALKING = 2
     BIKING = 5
-    CAR = 10
+    CAR = 20
     #Public transportation is weird because we need to factor in dropoff locations
     #BUS = ???
     #SUBWAY = ???
@@ -58,7 +58,7 @@ def driver(address, location=LocationType.ATTRACTIONS):
             #address = input("Please enter an address: ")
 #End goal is to fill parameters in using forms on the front end
 
-def getAttractionsInArea(address):
+def getAttractionsInArea(address, distance=TransportType.WALKING):
     return getPlacesInArea(address, 9, 18, 100, distance=TransportType.WALKING, location=LocationType.ATTRACTIONS)
 
 def prettyPrint(js):
