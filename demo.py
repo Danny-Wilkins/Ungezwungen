@@ -81,14 +81,17 @@ def demo():
 	would_like.sort(reverse=True)
 	might_like.sort(reverse=True)
 	print("\nYou would like:")
-	for prob, name in would_like:
-		print('\t-{}'.format(name))
-	print("\nYou might like:")
-	for prob, name in might_like:
-		print('\t-{}'.format(name))
-	print("\nYou wouldn't like:")
-	for name in wouldnt_like:
-		print('\t-{}'.format(name))
+	if would_like:
+		for prob, name in would_like:
+			print('\t-{}'.format(name))
+	if might_like:
+		print("\nYou might like:")
+		for prob, name in might_like:
+			print('\t-{}'.format(name))
+	if wouldnt_like:
+		print("\nYou wouldn't like:")
+		for name in wouldnt_like:
+			print('\t-{}'.format(name))
 
 if __name__ == "__main__":
 	demo()
