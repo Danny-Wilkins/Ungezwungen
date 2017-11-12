@@ -58,6 +58,9 @@ def driver(address, location=LocationType.ATTRACTIONS):
             #address = input("Please enter an address: ")
 #End goal is to fill parameters in using forms on the front end
 
+def getAttractionsInArea(address):
+    return getPlacesInArea(address, 9, 18, 100, distance=TransportType.WALKING, location=LocationType.ATTRACTIONS)
+
 def prettyPrint(js):
     print(json.dumps(js, indent=4, sort_keys=True))
 
@@ -67,7 +70,7 @@ def getPlacesInArea(address, start_time, end_time, price_range, location=Locatio
     except Exception as e:
         raise e
 
-    print(location)
+    #print(location)
     
     request_url = ('https://api.tripadvisor.com/api/partner/2.0/map/{0},{1}/{2}' \
             + '?key={3}&distance={4}').format(loc['lat'], loc['lng'], location, API_KEY, distance)
