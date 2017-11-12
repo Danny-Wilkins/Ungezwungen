@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Bytes</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/bootstrap.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    </head>
+    
+    <body>
+        <a href="top">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><img class="icon" src="{{url_for('static', filename='img/icon.png')}}"></img>
+                        </a>
+                        <p class="navbar-text">Bytes</p>
+                    </div>
+                </div>
+            </nav>
+        </a>
+        <!-- <div class="container" style="padding-top:60px"> -->
+        <div class="jumbotron text-center" id="top" style="background-image: url({{url_for('static', filename='img/food.jpg')}}); background-size:cover;">
+            <div class="container">
+                <h1>It's simple.</h1>
+                <p>Just enter your location and we'll find the best deals in your area.</p>
+                <form action="search.html" method="GET">
+                    <input type="text" name="address" placeholder="Time to eat!" id="add">
+                    <input type="button" value="Go!" class="btn btn-default btn-lg" id="add_but" onclick="search()" />
+                </form>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+        <script type="text/javascript" src="{{url_for('static', filename='js/yelp.js')}}"></script>
+        <div class="container">
+			<a href="https://www.yelp.com/biz/atrium-dumbo-brooklyn?adjust_creative=XRYdDW2W0jN3S5ZDt6v1qA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=XRYdDW2W0jN3S5ZDt6v1qA" target="_blank">
+			<div class="jumbotron" id="result">
+			<div class="block" style="background-image: url(https://s3-media3.fl.yelpcdn.com/bphoto/94KH6gsE9kYT-osA5_K4Zg/o.jpg); background-size:cover;"></div>
+	        <div class="row">
+	            <div class="col-sm-8">
+	                <h2>Atrium Dumbo</h2>
+	                <h4>0.21 miles</h4>
+	                <h4>15 Main St</h4>
+	                <h4>+17188581095</h4>
+	            </div>
+	            <div class="col-sm-2">
+	                <h2>4.0/5</h2>
+	                <h4>392 reviews</h4>
+	                <h2>$$</h2>
+	            </div>
+	            <div class="col-sm-1 col-sm-offset-1">
+	                <h1>B</h1>
+	                <h3>Good!</h3>
+	            </div>
+	        </div>
+	        </div>
+	    </div>
+
+	    </a>
+</body>
+<html>
