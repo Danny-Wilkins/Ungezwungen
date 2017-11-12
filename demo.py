@@ -20,11 +20,6 @@ def getAttractions():
 			print("Invalid address. Try again.")
 	return attractions
 
-def parsePath(soup, classes):
-	for class_ in classes:
-		soup = soup.find('div', class_=class_)
-	return soup
-
 def demo():
 	attractions = getAttractions()
 	numAttractions = len(attractions)
