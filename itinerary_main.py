@@ -24,37 +24,40 @@ class LocationType:
     RESTAURANTS = 'restaurants'
 
 def main():
-    values = driver()
+    #values = driver()
     
-    print(values)
-
+    #print(values)
+    pass
+    
 @app.route('/')
 def home():
     return render_template('index.html')
 
-@app.route('/search/<location>')
-def driver(location=LocationType.RESTAURANTS):
+@app.route('/search/<address>')
+def driver(address, location=LocationType.RESTAURANTS):
     #location = input("Please enter an address: ")
 
     #In the end, if this fails, it would be best to direct to a "failed to find address" page. From there, this can all be called again from the top. No loops or anything.
     while True:
         try:
-            return getPlacesInArea(address, 9, 18, 100, distance=TransportType.WALKING, location=location)
+            #return str(getPlacesInArea(address, 9, 18, 100, location, TransportType.WALKING))
+            return getReviews(filterRestaurants(getPlacesInArea(address, 9, 18, 100, location, TransportType.WALKING), False))
         except Exception as e:
             print("Address not found. Please enter a different location.")
             print(e)
-            address = input("Please enter an address: ")
+            #address = input("Please enter an address: ")
 #End goal is to fill parameters in using forms on the front end
 
 def getPlacesInArea(address, start_time, end_time, price_range, location=LocationType.RESTAURANTS, distance=TransportType.WALKING):
-	
     try:
         loc = geolocator(address)
     except Exception as e:
         raise e
+
+    print(location)
     
-    request_url = ('https://api.tripadvisor.com/api/partner/2.0/map/{},{}/{}' \
-            + '?key={}&distance={}').format(loc['lat'], loc['lng'], location, API_KEY, distance)
+    request_url = ('https://api.tripadvisor.com/api/partner/2.0/map/{0},{1}/{2}' \
+            + '?key={3}&distance={4}').format(loc['lat'], loc['lng'], location, API_KEY, distance)
     
     return requests.get(request_url).json()
 
