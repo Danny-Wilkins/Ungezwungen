@@ -28,10 +28,10 @@ def getCategoryVectors(attractions):
 		catergoryVecs.append(vec)
 	return np.array(catergoryVecs)
 
-def getPCACategoryVectors(attractions, n_components=10):
+def getPCACategoryVectors(attractions, n_components=6):
 	categories = getCategories(attractions)
 	vecs = getCategoryVectors(attractions)
-	pca = PCA(n_components=10)
+	pca = PCA(n_components=n_components)
 	pca.fit(vecs)
 	return pca.transform(vecs)
 
